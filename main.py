@@ -58,8 +58,7 @@ def checkDate():
 def sendTexts():
     imgURL, todayDate, day = getStockMap(), getDate(), checkDate()
     if (day == 5 or day == 6):
-        # If it's Sat/Sun don't do anything
-        return
+        return # If it's Sat/Sun don't do anything
     else:
         for num in phoneNumbers:
             client = Client(account_sid, auth_token)
