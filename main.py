@@ -47,16 +47,17 @@ def getStockMap():
 
 # Sending text (utilizing Twilio)
 def sendTexts():
+    imgURL = getStockMap()
     for num in phoneNumbers:
-        imgURL = getStockMap()
         client = Client(account_sid, auth_token)
         message = client.messages.create(
-        from_='+18444040726',
-        body='Stock Map',
+        from_ = '+18444040726',
+        body = 'Stock Map',
         media_url = imgURL,
-        to=num,    
+        to = num,    
         )
         print(message.sid)
+        time.sleep(delay*5)
 
 schedule.every().day.at("16:05").do(sendTexts)
 
