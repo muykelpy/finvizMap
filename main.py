@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium import webdriver
 from twilio.rest import Client
 from datetime import date
+import datetime
 import schedule
 import time
 
@@ -45,22 +46,31 @@ def getStockMap():
     print(imgURL)
     return(imgURL)
     
+def getDate():
+    today = date.today()
+    return today.strftime("%B %d, %Y")
+
+def checkDate():
+    today = datetime.date.today()
+    return today.weekday()
 
 # Sending text (utilizing Twilio)
 def sendTexts():
-    imgURL = getStockMap()
-    today = date.today()
-    formattedDate = today.strftime("%B %d, %Y")
-    for num in phoneNumbers:
-        client = Client(account_sid, auth_token)
-        message = client.messages.create(
-        from_ = '+18444040726',
-        body = ('Stock Map - ' + formattedDate),
-        media_url = imgURL,
-        to = num,    
-        )
-        print(message.sid)
-        time.sleep(delay*5)
+    imgURL, todayDate, day = getStockMap(), getDate(), checkDate()
+    if (day == 5 or day == 6):
+        # If it's Sat/Sun don't do anything
+        return
+    else:
+        for num in phoneNumbers:
+            client = Client(account_sid, auth_token)
+            message = client.messages.create(
+            from_ = '+18444040726',
+            body = ('Stock Map - ' + todayDate),
+            media_url = imgURL,
+            to = num,    
+            )
+            print(message.sid)
+            time.sleep(delay*5)
 
 schedule.every().day.at("16:05").do(sendTexts)
 
