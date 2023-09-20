@@ -58,10 +58,8 @@ def sendTexts():
         )
         print(message.sid)
 
-schedule.every().day.at("16:30").do(sendTexts)
+schedule.every().day.at("16:05").do(sendTexts)
 
 while True:
     schedule.run_pending()
     time.sleep(60)
-
-# sendTexts()
