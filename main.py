@@ -4,12 +4,13 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium import webdriver
 from twilio.rest import Client
+from datetime import date
 import schedule
 import time
 
 phoneNumbers = ["+15163033852", "+17187363742", "+15165677828", "+15168592181"]
 
-delay = 0.1
+delay = 0.5
 account_sid = 'AC316f2ea1b4f5e16203df8f6217de17ea'
 auth_token = '9958ae5b713eff71e636666ce5bb0018'
 
@@ -48,11 +49,13 @@ def getStockMap():
 # Sending text (utilizing Twilio)
 def sendTexts():
     imgURL = getStockMap()
+    today = date.today()
+    formattedDate = today.strftime("%B %d, %Y")
     for num in phoneNumbers:
         client = Client(account_sid, auth_token)
         message = client.messages.create(
         from_ = '+18444040726',
-        body = 'Stock Map',
+        body = ('Stock Map - ' + formattedDate),
         media_url = imgURL,
         to = num,    
         )
