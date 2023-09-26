@@ -9,7 +9,7 @@ import datetime
 import schedule
 import time
 
-phoneNumbers = ["+15163033852", "+17187363742", "+15165677828", "+15168592181"]
+phoneNumbers = ["+15163033852", "+17187363742", "+15165677828", "+15168592181", "+15165674336"]
 
 delay = 0.5
 account_sid = 'AC316f2ea1b4f5e16203df8f6217de17ea'
