@@ -7,11 +7,7 @@ import datetime
 import schedule
 import time
 
-<<<<<<< HEAD
-phoneNumbers = ["+15163033852", "+17187363742", "+15165677828", "+15168592181", "+15165674336"]
-=======
-phoneNumbers = ["+15163033852", "+17187363742", "+15165677828", "+15168592181", "+15163504820"]
->>>>>>> 55012befd6c5469b01cbb48fe1a58e6d5a772b73
+phoneNumbers = ["+15163033852", "+17187363742", "+15165677828", "+15168592181", "+15163504820", "+15165674336"]
 
 delay = 0.5
 account_sid = 'AC316f2ea1b4f5e16203df8f6217de17ea'
@@ -60,7 +56,7 @@ def checkDate():
 def sendTexts():
     imgURL, todayDate, day = getStockMap(), getDate(), checkDate()
     if (day == 5 or day == 6):
-        return # If it's Sat/Sun don't do anything
+        return
     else:
         for num in phoneNumbers:
             client = Client(account_sid, auth_token)
