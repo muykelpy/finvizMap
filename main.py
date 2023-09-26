@@ -1,5 +1,3 @@
-# Packages used: Selenium, Twilio, Schedule
-
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium import webdriver
@@ -9,7 +7,11 @@ import datetime
 import schedule
 import time
 
+<<<<<<< HEAD
 phoneNumbers = ["+15163033852", "+17187363742", "+15165677828", "+15168592181", "+15165674336"]
+=======
+phoneNumbers = ["+15163033852", "+17187363742", "+15165677828", "+15168592181", "+15163504820"]
+>>>>>>> 55012befd6c5469b01cbb48fe1a58e6d5a772b73
 
 delay = 0.5
 account_sid = 'AC316f2ea1b4f5e16203df8f6217de17ea'
@@ -71,7 +73,7 @@ def sendTexts():
             print(message.sid)
             time.sleep(delay*5)
 
-schedule.every().day.at("16:05").do(sendTexts)
+schedule.every().day.at("16:04").do(sendTexts)
 
 while True:
     schedule.run_pending()
