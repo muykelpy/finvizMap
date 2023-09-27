@@ -9,7 +9,7 @@ import time
 
 phoneNumbers = ["+15163033852", "+17187363742", "+15165677828", "+15168592181", "+15163504820", "+15165674336"]
 
-delay = 0.5
+delay = 1
 account_sid = 'AC316f2ea1b4f5e16203df8f6217de17ea'
 auth_token = '9958ae5b713eff71e636666ce5bb0018'
 
