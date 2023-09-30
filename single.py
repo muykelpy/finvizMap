@@ -3,11 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium import webdriver
 from twilio.rest import Client
 from datetime import date
-import datetime
-import schedule
 import time
-
-phoneNumbers = ["+15163033852", "+17187363742", "+15165677828", "+15168592181", "+15163504820", "+15165674336"]
 
 delay = 0.5
 account_sid = 'AC316f2ea1b4f5e16203df8f6217de17ea'
@@ -48,29 +44,18 @@ def getDate():
     today = date.today()
     return today.strftime("%B %d, %Y")
 
-def checkDate():
-    today = datetime.date.today()
-    return today.weekday()
-
 # Sending text (utilizing Twilio)
 def sendTexts():
-    imgURL, todayDate, day = getStockMap(), getDate(), checkDate()
-    if (day == 5 or day == 6):
-        return
-    else:
-        for num in phoneNumbers:
-            client = Client(account_sid, auth_token)
-            message = client.messages.create(
-            from_ = '+18444040726',
-            body = ('Stock Map - ' + todayDate),
-            media_url = imgURL,
-            to = num,    
-            )
-            print(message.sid)
-            time.sleep(delay*5)
+    imgURL, todayDate = getStockMap(), getDate()
+    phoneNumber = input("Enter a phone number (+1 not needed) \n")
+    client = Client(account_sid, auth_token)
+    message = client.messages.create(
+    from_ = '+18444040726',
+    body = ('Stock Map - ' + todayDate),
+    media_url = imgURL,
+    to = ("+1" + phoneNumber),    
+    )
+    print(message.sid)
+    exit(0)
 
-schedule.every().day.at("16:04").do(sendTexts)
-
-while True:
-    schedule.run_pending()
-    time.sleep(60)
+sendTexts()
