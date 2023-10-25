@@ -3,11 +3,20 @@ from selenium.webdriver.common.by import By
 from selenium import webdriver
 from twilio.rest import Client
 from datetime import date
+import json
 import time
 
 delay = 0.5
-account_sid = 'AC316f2ea1b4f5e16203df8f6217de17ea'
-auth_token = '9958ae5b713eff71e636666ce5bb0018'
+
+# Gathering data from config.json
+f = open('config.json')
+data = json.load(f)
+phoneNumbers = data["phoneNumbers"][0]
+account_sid = data["account_sid"]
+auth_token = data["auth_token"]
+
+# Closing file
+f.close()
 
 startURL = "https://finviz.com/map.ashx?t=sec"
 chrome_options = Options() # Initializing options parameter 

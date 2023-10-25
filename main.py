@@ -6,12 +6,19 @@ from datetime import date
 import datetime
 import schedule
 import time
-
-phoneNumbers = ["+15163033852", "+17187363742", "+15165677828", "+15168592181", "+15163504820", "+15165674336"]
+import json
 
 delay = 0.5
-account_sid = 'AC316f2ea1b4f5e16203df8f6217de17ea'
-auth_token = '9958ae5b713eff71e636666ce5bb0018'
+
+# Gathering data from config.json
+f = open('config.json')
+data = json.load(f)
+phoneNumbers = data["phoneNumbers"]
+account_sid = data["account_sid"]
+auth_token = data["auth_token"]
+
+# Closing file
+f.close()
 
 startURL = "https://finviz.com/map.ashx?t=sec"
 chrome_options = Options() # Initializing options parameter 
