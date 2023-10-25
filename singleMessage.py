@@ -11,9 +11,9 @@ delay = 0.5
 # Gathering data from config.json
 f = open('config.json')
 data = json.load(f)
-phoneNumbers = data["phoneNumbers"][0]
 account_sid = data["account_sid"]
 auth_token = data["auth_token"]
+twilio_num = data["twilio_num"]
 
 # Closing file
 f.close()
@@ -56,13 +56,13 @@ def getDate():
 # Sending text (utilizing Twilio)
 def sendTexts():
     imgURL, todayDate = getStockMap(), getDate()
-    phoneNumber = input("Enter a phone number (+1 not needed) \n")
+    input_num = input("Enter a phone number (+1 not needed) \n")
     client = Client(account_sid, auth_token)
     message = client.messages.create(
-    from_ = '+18444040726',
+    from_ = twilio_num,
     body = ('Stock Map - ' + todayDate),
     media_url = imgURL,
-    to = ("+1" + phoneNumber),    
+    to = ("+1" + input_num),    
     )
     print(message.sid)
     exit(0)

@@ -13,9 +13,10 @@ delay = 0.5
 # Gathering data from config.json
 f = open('config.json')
 data = json.load(f)
-phoneNumbers = data["phoneNumbers"]
+phone_nums = data["phone_nums"]
 account_sid = data["account_sid"]
 auth_token = data["auth_token"]
+twilio_num = data["twilio_num"]
 
 # Closing file
 f.close()
@@ -65,10 +66,10 @@ def sendTexts():
     if (day == 5 or day == 6):
         return
     else:
-        for num in phoneNumbers:
+        for num in phone_nums:
             client = Client(account_sid, auth_token)
             message = client.messages.create(
-            from_ = '+18444040726',
+            from_ = twilio_num,
             body = ('Stock Map - ' + todayDate),
             media_url = imgURL,
             to = num,    
